@@ -5,12 +5,19 @@ export default function AddProduct() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    const product = {
+      ...form,
+      price: parseFloat(form.price)
+    };
+  
     await fetch('http://localhost:3000/api/products', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
-      body: JSON.stringify(form),
+      body: JSON.stringify(product)
     });
+  
     alert('Product added!');
   };
 
